@@ -173,19 +173,16 @@ class EmployeesController extends Controller
         // Menggunakan model eloquent untuk where dan get data
         $employees = Employees::where('status', 'Active')->get();
 
+        // Fungsi count untuk menghitung total
         $totalActiveEmployees = $employees->count();
-
-        $total = [
-            'message' => 'Menampilkan total employees yang aktif',
-            'total' => $totalActiveEmployees,
-        ];
 
         $data = [
             'message' => 'Menampilkan semua employees yang aktif',
-            'data' => $employees,
+            'total' => $totalActiveEmployees,
+            'data' => $employees
         ];
         // mengirim data json dan kode 200 (the request succeeded)
-        return response()->json($data, 200, $total);
+        return response()->json($data, 200);
     }
 
     // Membuat method inactive
@@ -194,19 +191,16 @@ class EmployeesController extends Controller
         // Menggunakan model eloquent untuk where dan get data
         $employees = Employees::where('status', 'Inactive')->get();
 
+        // Fungsi count untuk menghitung total
         $totalInactiveEmployees = $employees->count();
-
-        $total = [
-            'message' => 'Menampilkan total employees yang tidak aktif',
-            'total' => $totalInactiveEmployees,
-        ];
 
         $data = [
             'message' => 'Menampilkan semua employees yang tidak aktif',
-            'data' => $employees,
+            'total' => $totalInactiveEmployees,
+            'data' => $employees
         ];
         // mengirim data json dan kode 200 (the request succeeded)
-        return response()->json($data, 200, $total);
+        return response()->json($data, 200);
     }
     // Membuat method terminated
     public function terminated(Request $request)
@@ -214,18 +208,15 @@ class EmployeesController extends Controller
         // Menggunakan model eloquent untuk where dan get data
         $employees = Employees::where('status', 'Terminated')->get();
 
+        // Fungsi count untuk menghitung total
         $totalTerminatedEmployees = $employees->count();
-
-        $total = [
-            'message' => 'Menampilkan total employees yang dihentikan',
-            'total' => $totalTerminatedEmployees,
-        ];
 
         $data = [
             'message' => 'Menampilkan semua employees yang dihentikan',
-            'data' => $employees,
+            'total' => $totalTerminatedEmployees,
+            'data' => $employees
         ];
         // mengirim data json dan kode 200 (the request succeeded)
-        return response()->json($data, 200, $total);
+        return response()->json($data, 200);
     }
 }
